@@ -1,0 +1,19 @@
+name: Docker Build And Push To Hub
+
+on:
+  push:
+    branches:
+      -master
+  
+
+jobs:
+  build:
+    runs -on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Login to Dockerhub
+        uses: docker/loginb-action@v2
+        with:
+          username: ${{secrets.DOCKERHUB_USERNAME}}
+          password: ${{secrets.DOCKERHUB_PASSWORD}}
